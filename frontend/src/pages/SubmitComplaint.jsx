@@ -37,7 +37,7 @@ const SubmitComplaint = () => {
       const config = {
         headers: { Authorization: `Bearer ${user.token}` }
       };
-      const { data } = await axios.post('http://localhost:5000/api/ai/analyze', {
+      const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/api/ai/analyze`, {
         title: formData.title,
         description: formData.description,
         category: formData.category
@@ -67,7 +67,7 @@ const SubmitComplaint = () => {
         headers: { Authorization: `Bearer ${user.token}` }
       };
       
-      await axios.post('http://localhost:5000/api/complaints', {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/complaints`, {
         name: user.name,
         email: user.email,
         ...formData,

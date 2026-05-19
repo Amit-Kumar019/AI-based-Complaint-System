@@ -18,11 +18,11 @@ const Dashboard = () => {
         },
       };
       
-      let url = 'http://localhost:5000/api/complaints';
+      let url = `${import.meta.env.VITE_API_URL}/api/complaints`;
       if (searchTerm) {
-        url = `http://localhost:5000/api/complaints/search?location=${searchTerm}`;
+        url = `${import.meta.env.VITE_API_URL}/api/complaints/search?location=${searchTerm}`;
       } else if (categoryFilter) {
-        url = `http://localhost:5000/api/complaints?category=${categoryFilter}`;
+        url = `${import.meta.env.VITE_API_URL}/api/complaints?category=${categoryFilter}`;
       }
 
       const { data } = await axios.get(url, config);
@@ -45,7 +45,7 @@ const Dashboard = () => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      await axios.put(`http://localhost:5000/api/complaints/${id}`, { status: newStatus }, config);
+      await axios.put(`${import.meta.env.VITE_API_URL}/api/complaints/${id}`, { status: newStatus }, config);
       fetchComplaints();
     } catch (error) {
       console.error('Error updating status', error);
